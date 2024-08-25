@@ -1,54 +1,72 @@
-/**
- * Se coloca el controlador como un objeto y luego se exporta como
- * se requiere primero el modelo empleado
- */
-
-const Empleado = require('../models/empleado');
+const Empleado = require('../models/empleado'); // Usa el nombre correcto del modelo
 const empleadoCtrl = {};
 
-/**
- * DEFINO LOS M�TODOS  */
-
-//Obtener todos los empleados
+// Obtener todos los empleados
 empleadoCtrl.getEmpleados = async (req, res) => {
-    const empleados = await Empleado.find();
-    res.json(empleados);   
-}                    
-
-// Crear empleados
-
-empleadoCtrl.createEmpleados = async (req, res) => { 
-   const empleado = new Empleado(req.body);
-   await empleado.save();    
-   res.json({
-       'status': 'Empleado guardado'
-   });
+    try {
+        const empleados = await Empleado.findAll(); // Usar findAll() de Sequelize
+        res.json(empleados);
+    } catch (error) {
+        res.status(500).json({ error: 'Error al obtener empleados' });
+    }
 }
 
-//Conseguir un �nico empleado 
-empleadoCtrl.getUnicoEmpleado = async (req, res) => {     
-    const empleadoUnico = await Empleado.findById(req.params.id); 
-    res.json(empleadoUnico);
+// Crear empleado
+empleadoCtrl.createEmpleados = async (req, res) => {
+    try {
+        const empleado = await Empleado.create(req.body); // Usar create() de Sequelize
+        res.json({ status: 'Empleado guardado', empleado });
+    } catch (error) {        
+        res.status(500).json({ error: 'Error al guardar empleado' });
+    }
 }
 
-//Actualizar empleado
-empleadoCtrl.editarEmpleado = async (req, res) =>  {
-    const { id } = req.params; 
-    const emepleadoEdit = {  
-        name: req.body.name,
-        position: req.body.position,
-        office: req.body.office,
-        salary: req.body.salary
-    };
-    await Empleado.findByIdAndUpdate(id, {$set: emepleadoEdit}, {new:  true}); 
-    res.json({status: 'Empleado Actualizado'});
+// Conseguir un único empleado
+empleadoCtrl.getUnicoEmpleado = async (req, res) => {
+    try {
+        const empleado = await Empleado.findByPk(req.params.id); // Usar findByPk() de Sequelize
+        if (empleado) {
+            res.json(empleado);
+        } else {
+            res.status(404).json({ error: 'Empleado no encontrado' });
+        }
+    } catch (error) {
+        res.status(500).json({ error: 'Error al obtener empleado' });
+    }
 }
 
-// Eliminar empleado 
+// Actualizar empleado
+empleadoCtrl.editarEmpleado = async (req, res) => {
+    try {
+        const [updated] = await Empleado.update(req.body, {
+            where: { usuario_id: req.params.id }
+        });
+        if (updated) {
+            const updatedEmpleado = await Empleado.findByPk(req.params.id);
+            res.json({ status: 'Empleado actualizado', updatedEmpleado });
+        } else {
+            res.status(404).json({ error: 'Empleado no encontrado' });
+        }
+    } catch (error) {
+        console.error('Error al guardar empleado:', error);
+        res.status(500).json({ error: 'Error al actualizar empleado' });
+    }
+}
+
+// Eliminar empleado
 empleadoCtrl.eliminarEmpleado = async (req, res) => {
-    await Empleado.findByIdAndDelete(req.params.id);
-    res.json({status: 'Empleado Eliminado'});
+    try {
+        const deleted = await Empleado.destroy({
+            where: { usuario_id: req.params.id }
+        });
+        if (deleted) {
+            res.json({ status: 'Empleado eliminado' });
+        } else {
+            res.status(404).json({ error: 'Empleado no encontrado' });
+        }
+    } catch (error) {
+        res.status(500).json({ error: 'Error al eliminar empleado' });
+    }
 }
- 
-//exporto el m�dulo
+
 module.exports = empleadoCtrl;

@@ -2,8 +2,8 @@ const express = require('express')
 const morgan = require('morgan');
 const cors = require('cors');
 const app = express(); // la constante app tendr� ahora todo el funcionamiento del servidor
-const { mongoose } = require('./database'); // no se quiere todo el archivo sino la conexi�n
-/** * Se crea una REST API, es la manera de decirle al servidor que reciba y env�e datos  */
+const sequelize = require('./database'); // Importa la configuración de la base de datos
+
 // Configuraciones
 app.set('port', process.env.PORT || 3000);
 app.use(morgan('dev')); 
