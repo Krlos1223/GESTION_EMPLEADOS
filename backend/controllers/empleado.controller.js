@@ -1,5 +1,29 @@
 const Empleado = require('../models/empleado'); // Usa el nombre correcto del modelo
+const bcrypt = require('bcrypt');
+
 const empleadoCtrl = {};
+
+empleadoCtrl.loginEmpleados = async (req, res) => {
+    const { nombre_de_usuario, contraseña } = req.body;
+
+    try {
+        // Busca al usuario en la base de datos por nombre de usuario
+        const empleado = await Empleado.findOne({ where: { nombre_de_usuario } });
+        if (!empleado) {
+            return res.status(400).json({ message: 'Usuario no encontrado' });
+        }
+
+        // Compara la contraseña proporcionada con la almacenada
+        const isMatch = await bcrypt.compare(contraseña, empleado.contraseña);
+        if (!isMatch) {
+            return res.status(400).json({ message: 'Contraseña incorrecta' });
+        }
+
+        res.status(200).json({ message: 'Autenticación satisfactoria' });
+    } catch (error) {        
+        res.status(500).json({ message: 'Error en la autenticación', error });
+    }
+};
 
 // Obtener todos los empleados
 empleadoCtrl.getEmpleados = async (req, res) => {
