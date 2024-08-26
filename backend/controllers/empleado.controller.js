@@ -38,12 +38,14 @@ empleadoCtrl.getEmpleados = async (req, res) => {
 // Crear empleado
 empleadoCtrl.createEmpleados = async (req, res) => {
     try {
-        const empleado = await Empleado.create(req.body); // Usar create() de Sequelize
+        const empleado = await Empleado.create(req.body); // Sequelize manejará el campo auto-incremental
         res.json({ status: 'Empleado guardado', empleado });
     } catch (error) {        
-        res.status(500).json({ error: 'Error al guardar empleado' });
+        console.error('Error al guardar empleado:', error);
+        res.status(500).json({ error: 'Error al guardar empleado', details: error.message });
     }
 }
+
 
 // Conseguir un único empleado
 empleadoCtrl.getUnicoEmpleado = async (req, res) => {

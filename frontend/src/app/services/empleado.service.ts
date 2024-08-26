@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Empleado } from '../models/empleado';
+import { map } from 'rxjs/operators'; // Importa el operador 'map'
 
 @Injectable({
   providedIn: 'root'
@@ -13,23 +14,40 @@ export class EmpleadoService {
 
   constructor(private http: HttpClient) {
     this.selectedEmpleado = new Empleado();
-     this.empleados = [];
-   }
-
-  getEmpleados(){
-    return this.http.get(this.URL_API);
+    this.empleados = [];
   }
 
-  PostEmpleado(Empleado:Empleado){
-    return this.http.post(this.URL_API, Empleado);
+  private mapEmpleadoToBackend(empleado: Empleado): any {
+    return {
+      ...empleado,
+      contraseña: empleado.contrasena // Renombramos la propiedad para el backend
+    };
   }
 
-  putEmpleado(Empleado:Empleado){
-    return this.http.put(this.URL_API +  `/${Empleado._id}`, Empleado);// 
+  private mapBackendToEmpleado(data: any): Empleado {
+    return {
+      ...data,
+      contrasena: data.contraseña // Renombramos la propiedad desde el backend
+    };
   }
 
-  deleteEmpleado(_id: string) { // Solo se necesita el id, no todo lo del empleado
-    return this.http.delete(this.URL_API + `/${_id}`);// utilizamos el m�todo delete
+  getEmpleados() {
+    return this.http.get<Empleado[]>(this.URL_API).pipe(
+      map((data: any[]) => data.map(this.mapBackendToEmpleado))
+    );
   }
 
+  postEmpleado(empleado: Empleado) {
+    const body = this.mapEmpleadoToBackend(empleado);
+    return this.http.post(this.URL_API, body);
+  }
+
+  putEmpleado(empleado: Empleado) {
+    const body = this.mapEmpleadoToBackend(empleado);
+    return this.http.put(this.URL_API + `/${empleado.usuario_id}`, body);
+  }
+
+  deleteEmpleado(_id: string) {
+    return this.http.delete(this.URL_API + `/${_id}`);
+  }
 }

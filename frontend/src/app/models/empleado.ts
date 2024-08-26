@@ -1,16 +1,20 @@
 export class Empleado {
-    constructor(_id = "", name = "", position = "", office = "", salary = 0) {
-        this._id = _id;
-        this.name = name;
-        this.position = position;
-        this.office = office;
-        this.salary = salary;
-      }
-      
-    _id: string; // Sub gui�n id porque los datos van a venir de MOngodb
-    name: string;
-    position: string;
-    office: string;
-    salary: number;
+  usuario_id?: string; // Este campo puede ser opcional si se usa en el backend
+  nombre: string;
+  apellido: string;
+  cedula: string;
+  fecha_de_nacimiento: Date;
+  rol: string;
+  nombre_de_usuario: string;
+  contrasena: string;
 
+  constructor() {
+      this.nombre = '';
+      this.apellido = '';
+      this.cedula = '';
+      this.fecha_de_nacimiento = new Date();
+      this.rol = '';
+      this.nombre_de_usuario = '';
+      this.contrasena = '';
+  }
 }
