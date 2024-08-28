@@ -1,11 +1,8 @@
-<nav class="nav-wrapper blue">
-  <div class="container">
-    <a href="/" class="brand-logo">GESTIÓN DE EMPLEADOS</a>
+<app-header></app-header>
+<div class="container">
+  <app-sidebar></app-sidebar>
+  <div class="main-content">
+    <router-outlet></router-outlet>
   </div>
-
-</nav>
-
-<div class="container p-4">
-  <app-empleados></app-empleados>
-
 </div>
+<app-footer></app-footer>

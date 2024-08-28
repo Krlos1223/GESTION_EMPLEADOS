@@ -1,0 +1,23 @@
+aside {
+    width: 200px;
+    background-color: #f2f2f2;
+    height: 100vh;
+    padding: 20px;    
+  }
+  
+  aside ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  aside ul li {
+    margin: 15px 0;
+  }
+  
+  aside ul li a {
+    text-decoration: none;
+    color: #004080;
+    font-weight: bold;
+    font-size: 150%;
+  }
+  

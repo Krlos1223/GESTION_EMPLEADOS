@@ -1,22 +1,25 @@
 /* empleados.component.css */
 .table-responsive {
   overflow-x: auto; /* Añade una barra de desplazamiento horizontal si es necesario */
+  
 }
 
 .card {
   border-radius: 8px;
+  margin-top: -50px;
+
 }
 
 .card-header {
-  border-bottom: 2px solid #007bff;
+  border-bottom: 2px solid #007bff;  
 }
 
 .table-hover tbody tr:hover {
-  background-color: #f1f1f1;
+  background-color: #f1f1f1;  
 }
 
 .table th, .table td {
-  vertical-align: middle;
+  vertical-align: middle;  
 }
 
 .btn {
@@ -26,3 +29,4 @@
 .btn:hover {
   opacity: 0.8;
 }
+
