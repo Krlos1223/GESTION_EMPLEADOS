@@ -8,8 +8,10 @@ const express = require('express');
 const router = express.Router();
 const empleadoCtrl = require('../controllers/empleado.controller');
 
-
+//Ruta login
 router.post('/login', empleadoCtrl.loginEmpleados);
+
+//Ritas de empleados
 router.get('/', empleadoCtrl.getEmpleados); // Aqui tenemos una ruta más limpia de entender gracias al controlador. obtiene todos los empleados
 router.post('/', empleadoCtrl.createEmpleados);//guardar
 router.get('/:id', empleadoCtrl.getUnicoEmpleado);// obtiene unn unico empleado

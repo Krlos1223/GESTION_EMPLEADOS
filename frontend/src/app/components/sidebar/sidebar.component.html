@@ -19,3 +19,12 @@
     </ul>
   </aside>
    -->
+
+   <!-- sidebar.component.html-->
+<nav>
+  <ul>
+    <li *ngIf="userRole === 'Administrador'">Admin Dashboard</li>
+    <li *ngIf="userRole === 'user'">User Dashboard</li>
+     <!--Agrega más elementos según el rol-->
+  </ul>
+</nav> 
