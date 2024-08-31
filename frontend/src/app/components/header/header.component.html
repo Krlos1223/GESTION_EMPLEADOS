@@ -1,11 +1,12 @@
 <header>
-    <div class="logo">
-      <img src="assets/logo.png" alt="Logo del Taller">
-      <h1>Gestión Taller</h1>
-    </div>
-    <div class="user-info">
-      <span>Usuario: Admin</span>
-      <button>Salir</button>
-    </div>
-  </header>
+  <div class="logo">
+    <img src="assets/logo.png" alt="Logo del Taller">
+    <h1>Gestión Taller</h1>
+  </div>
+  <div *ngIf="isLoggedIn" class="user-info">
+    <span>Usuario: {{ username }}</span>
+    <button (click)="logout()">Salir</button>
+  </div>
+</header>
+
   
