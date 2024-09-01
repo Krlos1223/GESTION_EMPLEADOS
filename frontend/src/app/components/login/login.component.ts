@@ -1,4 +1,3 @@
-// login.component.ts
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AutenticacionService } from '../../services/autenticacion.service';
@@ -11,25 +10,30 @@ import { AutenticacionService } from '../../services/autenticacion.service';
 export class LoginComponent {
   username: string = '';
   password: string = '';
+  errorMessage: string = ''; // Variable para almacenar mensajes de error
 
   constructor(private autenticacionService: AutenticacionService, private router: Router) { }
 
   onLogin(): void {
     this.autenticacionService.login(this.username, this.password).subscribe(
       response => {
+        console.log('Respuesta del backend:', response); // Para depurar
         if (response.message === 'Autenticación satisfactoria') {
           localStorage.setItem('token', response.token); // Asegúrate de enviar un token si es necesario
           this.router.navigate(['/home']);
         } else {
-          alert('Credenciales incorrectas');
+          this.errorMessage = response.message || 'Error desconocido'; // Mostrar el mensaje de error del backend
         }
       },
       error => {
         console.error('Error en el inicio de sesión', error);
+        // Asegúrate de capturar el mensaje de error correcto del backend
+        this.errorMessage = error.error?.message || 'Error al intentar iniciar sesión. Por favor, intente de nuevo.';
       }
     );
   }
 }
+
 
 
 

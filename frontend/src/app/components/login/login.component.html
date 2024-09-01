@@ -9,6 +9,10 @@
     <input type="password" id="contraseña" class="form-control" name="contraseña" [(ngModel)]="password" placeholder="Ingrese la contraseña" required>
   </div>
   <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+  <div *ngIf="errorMessage" class="alert alert-danger mt-3">
+    {{ errorMessage }}
+  </div>
 </form>
+
 
 
