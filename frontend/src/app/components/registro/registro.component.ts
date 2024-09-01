@@ -24,7 +24,7 @@ export class RegistroComponent implements OnInit {
       (empleados: Empleado[]) => {
         if (empleados.some(empleado => empleado.rol === 'Administrador')) {
           this.adminRegistered = true;
-          this.router.navigate(['/login']); // Redirigir al login si ya existe un administrador
+          this.router.navigate(['/']); // Redirigir al login si ya existe un administrador
         }
       },
       (error) => {
@@ -39,7 +39,7 @@ export class RegistroComponent implements OnInit {
     this.empleadoService.postEmpleado(this.selectedEmpleado).subscribe(
       (response) => {
         console.log('Administrador registrado exitosamente');
-        this.router.navigate(['/login']); // Redirigir al login tras el registro
+        this.router.navigate(['/']); // Redirigir al login tras el registro
       },
       (error) => {
         console.error('Error al registrar el administrador:', error);
@@ -52,4 +52,9 @@ export class RegistroComponent implements OnInit {
     empleadoForm.resetForm();
     this.selectedEmpleado = new Empleado(); // Restablecer el modelo del empleado
   }
+
+  goToHome(): void {
+    this.router.navigate(['/']); // Asegúrate de que la ruta sea correcta
+  }
+
 }

@@ -37,9 +37,10 @@
             <label for="contraseña" class="form-label">Contraseña</label>
             <input type="password" id="contraseña" class="form-control" name="contraseña" [(ngModel)]="selectedEmpleado.contrasena" placeholder="Ingrese la contraseña" required>
           </div>
-          <div class="d-flex justify-content-between">
-            <button type="button" class="btn btn-secondary" (click)="resetForm(empleadoForm)">Limpiar</button>
+          <div class="d-flex justify-content-between">            
             <button type="submit" class="btn btn-primary">Registrar</button>
+            <button type="button" class="btn btn-primary" (click)="goToHome()">Regresar</button>
+            <button type="button" class="btn btn-secondary" (click)="resetForm(empleadoForm)">Limpiar</button>
           </div>
         </form>
       </div>

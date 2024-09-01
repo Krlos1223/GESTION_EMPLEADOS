@@ -4,12 +4,13 @@ import { EmpleadosComponent } from './components/empleados/empleados.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { RegistroComponent } from './components/registro/registro.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 
-export const routes: Routes = [
-  { path: '', redirectTo: '/', pathMatch: 'full' },
+export const routes: Routes = [  
+  { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'home', component: HomeComponent },
+  { path: 'admin', component: AdminComponent },
   { path: 'empleados', component: EmpleadosComponent },
   { path: 'registro', component: RegistroComponent },
   // Añade más rutas aquí según sea necesario.

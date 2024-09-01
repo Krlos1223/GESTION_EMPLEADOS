@@ -20,7 +20,7 @@ export class LoginComponent {
         console.log('Respuesta del backend:', response); // Para depurar
         if (response.message === 'Autenticación satisfactoria') {
           localStorage.setItem('token', response.token); // Asegúrate de enviar un token si es necesario
-          this.router.navigate(['/home']);
+          this.router.navigate(['/admin']);
         } else {
           this.errorMessage = response.message || 'Error desconocido'; // Mostrar el mensaje de error del backend
         }
@@ -32,6 +32,11 @@ export class LoginComponent {
       }
     );
   }
+
+  goToHome(): void {
+    this.router.navigate(['/']); // Asegúrate de que la ruta sea correcta
+  }
+  
 }
 
 

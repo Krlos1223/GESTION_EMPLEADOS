@@ -11,7 +11,8 @@ import { HomeComponent } from './components/home/home.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegistroComponent } from './components/registro/registro.component';
-
+import { AdminComponent } from './components/admin/admin.component';
+import { SidebarAdminComponent } from './components/sidebar-admin/sidebar-admin.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,9 @@ import { RegistroComponent } from './components/registro/registro.component';
     SidebarComponent,
     HomeComponent,
     FooterComponent,
-    RegistroComponent 
+    RegistroComponent,
+    AdminComponent,
+    SidebarAdminComponent
   ],
   imports: [
     BrowserModule,
