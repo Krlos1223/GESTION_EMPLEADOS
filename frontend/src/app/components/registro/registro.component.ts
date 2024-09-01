@@ -24,6 +24,7 @@ export class RegistroComponent implements OnInit {
       (empleados: Empleado[]) => {
         if (empleados.some(empleado => empleado.rol === 'Administrador')) {
           this.adminRegistered = true;
+          console.log('Administrador ya registrado, redirigiendo...');
           this.router.navigate(['/']); // Redirigir al login si ya existe un administrador
         }
       },

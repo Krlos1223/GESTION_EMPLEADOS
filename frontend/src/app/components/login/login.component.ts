@@ -20,6 +20,7 @@ export class LoginComponent {
         console.log('Respuesta del backend:', response); // Para depurar
         if (response.message === 'Autenticación satisfactoria') {
           localStorage.setItem('token', response.token); // Asegúrate de enviar un token si es necesario
+          localStorage.setItem('nombre', response.nombre);//obtener nombre de usuario
           this.router.navigate(['/admin']);
         } else {
           this.errorMessage = response.message || 'Error desconocido'; // Mostrar el mensaje de error del backend

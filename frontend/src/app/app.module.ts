@@ -13,6 +13,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { SidebarAdminComponent } from './components/sidebar-admin/sidebar-admin.component';
+import { HeaderAuthComponent } from './components/header-auth/header-auth.component'; 
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { SidebarAdminComponent } from './components/sidebar-admin/sidebar-admin.
     FooterComponent,
     RegistroComponent,
     AdminComponent,
-    SidebarAdminComponent
+    SidebarAdminComponent,
+    HeaderAuthComponent
   ],
   imports: [
     BrowserModule,

@@ -19,7 +19,13 @@ empleadoCtrl.loginEmpleados = async (req, res) => {
             return res.status(400).json({ message: 'Contraseña incorrecta' });
         }
 
-        res.status(200).json({ message: 'Autenticación satisfactoria' });
+        // Envía la respuesta con el nombre del usuario y un token (si es necesario)
+        res.status(200).json({
+            message: 'Autenticación satisfactoria',
+            token: 'your-jwt-token-here', // Genera y devuelve un token si es necesario
+            nombre: empleado.nombre // Envía el nombre del usuario
+        });        
+
     } catch (error) {        
         res.status(500).json({ message: 'Error en la autenticación', error });
     }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AutenticacionService } from '../../services/autenticacion.service';
 
 @Component({
   selector: 'app-admin',  
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrl: './admin.component.css'
 })
 export class AdminComponent {
+
+  constructor(private autenticacionService: AutenticacionService) { }
+
+  onLogout(): void {
+    this.autenticacionService.logout();  // Llama al método de logout del servicio
+  }
 
 }
