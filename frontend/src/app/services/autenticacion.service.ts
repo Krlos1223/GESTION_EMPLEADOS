@@ -21,4 +21,8 @@ export class AutenticacionService {
     this.router.navigate(['/']);  // Redirige al home después del logout
   }
 
+  isAuthenticated(): boolean {
+    return !!localStorage.getItem('token');
+  }
+
 }

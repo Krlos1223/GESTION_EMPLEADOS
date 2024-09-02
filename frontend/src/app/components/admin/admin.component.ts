@@ -1,17 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AutenticacionService } from '../../services/autenticacion.service';
 
 @Component({
-  selector: 'app-admin',  
+  selector: 'app-admin',
   templateUrl: './admin.component.html',
-  styleUrl: './admin.component.css'
+  styleUrls: ['./admin.component.css']
 })
-export class AdminComponent {
+export class AdminComponent implements OnInit {
 
-  constructor(private autenticacionService: AutenticacionService) { }
+  constructor(private autenticacionService: AutenticacionService, private router: Router) { }
+
+  ngOnInit(): void {
+    if (!this.autenticacionService.isAuthenticated()) {
+      this.router.navigate(['/login']); // Redirige al login si no está autenticado
+    }
+  }
 
   onLogout(): void {
     this.autenticacionService.logout();  // Llama al método de logout del servicio
+    this.router.navigate(['/login']); // Redirige al login después de hacer logout
   }
-
 }
+
