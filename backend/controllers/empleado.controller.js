@@ -1,3 +1,4 @@
+const jwt = require('jsonwebtoken');
 const Empleado = require('../models/empleado'); // Usa el nombre correcto del modelo
 const bcrypt = require('bcrypt');
 
@@ -7,6 +8,9 @@ empleadoCtrl.loginEmpleados = async (req, res) => {
     const { nombre_de_usuario, contraseña } = req.body;
 
     try {
+        // Log para verificar la variable de entorno
+        console.log('ACCESS_TOKEN_SECRET:', process.env.ACCESS_TOKEN_SECRET);
+
         // Busca al usuario en la base de datos por nombre de usuario
         const empleado = await Empleado.findOne({ where: { nombre_de_usuario } });
         if (!empleado) {
@@ -19,14 +23,18 @@ empleadoCtrl.loginEmpleados = async (req, res) => {
             return res.status(400).json({ message: 'Contraseña incorrecta' });
         }
 
+         // Genera un token JWT
+         const token = jwt.sign({ id: empleado.id, nombre_de_usuario: empleado.nombre_de_usuario }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1h' });
+         
         // Envía la respuesta con el nombre del usuario y un token (si es necesario)
         res.status(200).json({
             message: 'Autenticación satisfactoria',
-            token: 'your-jwt-token-here', // Genera y devuelve un token si es necesario
+            token: token, // Genera y devuelve un token si es necesario
             nombre: empleado.nombre // Envía el nombre del usuario
         });        
 
-    } catch (error) {        
+    } catch (error) {      
+        console.error('Error en la autenticación:', error); // Agrega un log de error más detallado  
         res.status(500).json({ message: 'Error en la autenticación', error });
     }
 };

@@ -7,6 +7,7 @@
 const express = require('express');
 const router = express.Router();
 const empleadoCtrl = require('../controllers/empleado.controller');
+const authenticateToken = require('../middleware/auth.middleware');
 
 //Ruta login
 router.post('/login', empleadoCtrl.loginEmpleados);
@@ -17,5 +18,8 @@ router.post('/', empleadoCtrl.createEmpleados);//guardar
 router.get('/:id', empleadoCtrl.getUnicoEmpleado);// obtiene unn unico empleado
 router.put('/:id',empleadoCtrl.editarEmpleado);   //Acctualizar datos (uno a la vez)
 router.delete('/:id', empleadoCtrl.eliminarEmpleado);
+
+//Rutas protegidas
+router.get('/admin', authenticateToken, empleadoCtrl.getEmpleados)
 
 module.exports = router;
