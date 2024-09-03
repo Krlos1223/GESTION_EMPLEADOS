@@ -13,7 +13,8 @@ import { LoginComponent } from './components/login/login.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { SidebarAdminComponent } from './components/sidebar-admin/sidebar-admin.component';
-import { HeaderAuthComponent } from './components/header-auth/header-auth.component'; 
+import { HeaderAuthComponent } from './components/header-auth/header-auth.component';
+import { NosotrosComponent } from './components/nosotros/nosotros.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { HeaderAuthComponent } from './components/header-auth/header-auth.compon
     RegistroComponent,
     AdminComponent,
     SidebarAdminComponent,
-    HeaderAuthComponent
+    HeaderAuthComponent,
+    NosotrosComponent
   ],
   imports: [
     BrowserModule,

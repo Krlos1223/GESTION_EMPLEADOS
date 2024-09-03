@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EmpleadoService } from '../../services/empleado.service';
 import { Empleado } from '../../models/empleado';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-empleados',
@@ -12,7 +13,7 @@ export class EmpleadosComponent implements OnInit {
   selectedEmpleado: Empleado = new Empleado();
   editMode: boolean = false;
 
-  constructor(private empleadoService: EmpleadoService) {}
+  constructor(private empleadoService: EmpleadoService, private router: Router) {}
 
   ngOnInit(): void {
     this.getEmpleados();
@@ -58,7 +59,7 @@ export class EmpleadosComponent implements OnInit {
             }
         );
     }
-}
+ }
 
   
 
@@ -88,4 +89,9 @@ export class EmpleadosComponent implements OnInit {
       form.reset();
     }
   }
+
+  goToHome(): void {
+    this.router.navigate(['/admin']); // Asegúrate de que la ruta sea correcta
+  }
+
 }

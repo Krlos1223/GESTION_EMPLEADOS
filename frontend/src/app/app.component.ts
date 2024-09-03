@@ -11,9 +11,10 @@ export class AppComponent {
 
   // Método para verificar si la ruta actual es alguna de las rutas donde se requiere el header sin botón de "Salir"
   isPublicPage(): boolean {
-    const publicRoutes = ['/', '/login', '/registro']; // Agrega aquí todas las rutas que no necesitan el botón de "Salir"
+    const publicRoutes = ['/', '/login', '/registro', `/nosotros`, '/configuracion', '/contactanos']; // Agrega aquí todas las rutas que no necesitan el botón de "Salir"
     return publicRoutes.includes(this.router.url);
   }
+    
 }
 
 

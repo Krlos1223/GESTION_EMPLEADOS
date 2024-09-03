@@ -2,7 +2,7 @@
   <div class="row">
     <!-- Formulario de registro de empleados -->
     <div class="col-lg-6">
-      <div class="card shadow-sm">
+      <div class="card shadow-sm card-form">
         <div class="card-header bg-primary text-white">
           <h4 class="mb-0">Agregar / Editar Empleado</h4>
         </div>
@@ -42,8 +42,9 @@
               <input type="password" id="contraseña" class="form-control" name="contraseña" [(ngModel)]="selectedEmpleado.contrasena" placeholder="Ingrese la contraseña" required>
             </div>
             <div class="d-flex justify-content-between">
-              <button type="button" class="btn btn-secondary" (click)="resetForm(empleadoForm)">Limpiar</button>
               <button type="submit" class="btn btn-primary">Guardar</button>
+              <button type="button" class="btn btn-primary" (click)="goToHome()">Regresar</button>
+              <button type="button" class="btn btn-secondary" (click)="resetForm(empleadoForm)">Limpiar</button>              
             </div>
           </form>
         </div>
@@ -52,7 +53,7 @@
 
     <!-- Lista de empleados -->
     <div class="col-lg-6">
-      <div class="card shadow-sm">
+      <div class="card shadow-sm card-list">
         <div class="card-header bg-primary text-white">
           <h4 class="mb-0">Lista de Empleados</h4>
         </div>

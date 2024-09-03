@@ -6,8 +6,15 @@
 
 .card {
   border-radius: 8px;
-  margin-top: -50px;
+  margin-top: -50px;  
+}
 
+.card-form {
+  margin-left: -90px;
+}
+
+.card-list {
+  width: 700px;
 }
 
 .card-header {

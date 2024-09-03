@@ -6,6 +6,8 @@ import { HomeComponent } from './components/home/home.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { AuthGuard } from './auth.guard';
+import { NosotrosComponent } from './components/nosotros/nosotros.component';
+import { ContactanosComponent } from './components/contactanos/contactanos.component';
 
 
 export const routes: Routes = [  
@@ -14,6 +16,8 @@ export const routes: Routes = [
   { path: 'admin', component: AdminComponent, canActivate:[AuthGuard] },
   { path: 'empleados', component: EmpleadosComponent },
   { path: 'registro', component: RegistroComponent },
+  { path: 'nosotros', component: NosotrosComponent},
+  { path: 'contactanos', component: ContactanosComponent}
   // Añade más rutas aquí según sea necesario.
 ];
 
