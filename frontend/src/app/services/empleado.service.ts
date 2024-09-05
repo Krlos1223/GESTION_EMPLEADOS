@@ -44,10 +44,10 @@ export class EmpleadoService {
 
   putEmpleado(empleado: Empleado) {
     const body = this.mapEmpleadoToBackend(empleado);
-    return this.http.put(this.URL_API + `/${empleado.usuario_id}`, body);
+    return this.http.put(`${this.URL_API}/${empleado.usuario_id}`, body);
   }
 
-  deleteEmpleado(_id: string) {
-    return this.http.delete(this.URL_API + `/${_id}`);
+  deleteEmpleado(usuario_id: string) {
+    return this.http.delete(`${this.URL_API}/${usuario_id}`);
   }
 }

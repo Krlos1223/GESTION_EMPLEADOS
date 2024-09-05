@@ -14,7 +14,7 @@ export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'admin', component: AdminComponent, canActivate:[AuthGuard] },
-  { path: 'empleados', component: EmpleadosComponent },
+  { path: 'empleados', component: EmpleadosComponent, canActivate:[AuthGuard]},
   { path: 'registro', component: RegistroComponent },
   { path: 'nosotros', component: NosotrosComponent},
   { path: 'contactanos', component: ContactanosComponent}

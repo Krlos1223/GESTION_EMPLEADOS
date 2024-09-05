@@ -3,16 +3,16 @@ export class Empleado {
   nombre: string;
   apellido: string;
   cedula: string;
-  fecha_de_nacimiento: Date;
+  fecha_de_nacimiento: string;
   rol: string;
   nombre_de_usuario: string;
-  contrasena: string;
+  contrasena?: string;
 
   constructor() {
       this.nombre = '';
       this.apellido = '';
       this.cedula = '';
-      this.fecha_de_nacimiento = new Date();
+      this.fecha_de_nacimiento = '';
       this.rol = '';
       this.nombre_de_usuario = '';
       this.contrasena = '';

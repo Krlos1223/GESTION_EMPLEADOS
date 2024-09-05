@@ -21,50 +21,65 @@ export class EmpleadosComponent implements OnInit {
 
   getEmpleados(): void {
     this.empleadoService.getEmpleados().subscribe(
-      (data: Empleado[]) => {
-        this.empleados = data;
-      },
-      (error) => {
-        console.error('Error fetching empleados:', error);
-      }
+        (data: Empleado[]) => {
+            console.log('Datos recibidos desde el backend:', data);
+            this.empleados = data.map(empleado => {
+                // Formatear la fecha de nacimiento para el formato YYYY-MM-DD
+                const formattedDate = new Date(empleado.fecha_de_nacimiento).toISOString().split('T')[0];
+                return {
+                    ...empleado,
+                    fecha_de_nacimiento: formattedDate // Ajusta al formato YYYY-MM-DD
+                };
+            });
+        },
+        (error) => {
+            console.error('Error fetching empleados:', error);
+        }
     );
-  }
+}
 
   saveEmpleado(): void {
-    // Elimina el campo usuario_id del objeto antes de enviarlo
-    const { usuario_id, ...empleadoData } = this.selectedEmpleado;
+    const { usuario_id, contrasena, ...empleadoData } = this.selectedEmpleado;
 
-    console.log('Datos del empleado a guardar:', this.selectedEmpleado);
+    // Construye el objeto que se enviará
+    const dataToSend = {
+      ...empleadoData,
+      ...(this.editMode && contrasena ? { contrasena } : {}) // Incluye contrasena solo si está presente en modo edición
+    };
 
-    if (this.editMode) {
-        this.empleadoService.putEmpleado(this.selectedEmpleado).subscribe(
-            (response) => {
-                console.log('Empleado updated successfully');
-                this.getEmpleados();
-                this.resetForm();
-            },
-            (error) => {
-                console.error('Error updating empleado:', error);
-            }
-        );
+    console.log('Datos del empleado a guardar:', dataToSend);
+
+    if (this.editMode && usuario_id) {
+      // Si estás editando y hay un usuario_id válido, envía los datos junto con el usuario_id
+      this.empleadoService.putEmpleado({ ...dataToSend, usuario_id }).subscribe(
+        (response) => {
+          console.log('Empleado updated successfully');
+          this.getEmpleados();
+          this.resetForm();
+        },
+        (error) => {
+          console.error('Error updating empleado:', error);
+        }
+      );
     } else {
+      // Para nuevos empleados, solo envía los datos completos
       this.empleadoService.postEmpleado(this.selectedEmpleado).subscribe(
-            (response) => {
-                console.log('Empleado added successfully');
-                this.getEmpleados();
-                this.resetForm();
-            },
-            (error) => {
-                console.error('Error adding empleado:', error);
-            }
-        );
+        (response) => {
+          console.log('Empleado added successfully');
+          this.getEmpleados();
+          this.resetForm();
+        },
+        (error) => {
+          console.error('Error adding empleado:', error);
+        }
+      );
     }
- }
+  }
 
   
 
   editarEmpleado(empleado: Empleado): void {
-    this.selectedEmpleado = { ...empleado };
+    this.selectedEmpleado = { ...empleado, contrasena: '' }; // Limpia la contraseña al editar
     this.editMode = true;
   }
 

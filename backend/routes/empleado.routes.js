@@ -21,5 +21,6 @@ router.delete('/:id', empleadoCtrl.eliminarEmpleado);
 
 //Rutas protegidas
 router.get('/admin', authenticateToken, empleadoCtrl.getEmpleados)
+router.get('/empleados', authenticateToken, empleadoCtrl.getEmpleados)
 
 module.exports = router;

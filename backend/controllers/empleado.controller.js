@@ -64,31 +64,57 @@ empleadoCtrl.createEmpleados = async (req, res) => {
 // Conseguir un único empleado
 empleadoCtrl.getUnicoEmpleado = async (req, res) => {
     try {
-        const empleado = await Empleado.findByPk(req.params.id); // Usar findByPk() de Sequelize
+        const empleado = await Empleado.findByPk(req.params.id, {
+            attributes: { exclude: ['contraseña'] }
+        });
+
         if (empleado) {
-            res.json(empleado);
+            const fechaNacimiento = empleado.fecha_de_nacimiento.toISOString().split('T')[0]; // Formato YYYY-MM-DD
+            console.log('Fecha de nacimiento en el backend (formateada):', fechaNacimiento); // Imprime la fecha formateada
+
+            const empleadoData = {
+                ...empleado.toJSON(),
+                fecha_de_nacimiento: fechaNacimiento // Formato YYYY-MM-DD
+            };
+
+            res.json(empleadoData);
         } else {
             res.status(404).json({ error: 'Empleado no encontrado' });
         }
     } catch (error) {
+        console.error('Error al obtener empleado:', error); // Cambié a console.error para errores
         res.status(500).json({ error: 'Error al obtener empleado' });
     }
-}
+};
+
 
 // Actualizar empleado
 empleadoCtrl.editarEmpleado = async (req, res) => {
     try {
-        const [updated] = await Empleado.update(req.body, {
-            where: { usuario_id: req.params.id }
-        });
-        if (updated) {
-            const updatedEmpleado = await Empleado.findByPk(req.params.id);
-            res.json({ status: 'Empleado actualizado', updatedEmpleado });
-        } else {
-            res.status(404).json({ error: 'Empleado no encontrado' });
+        // Obtenemos el empleado actual de la base de datos
+        const empleado = await Empleado.findByPk(req.params.id);
+
+        if (!empleado) {
+            return res.status(404).json({ error: 'Empleado no encontrado' });
         }
+
+        // Excluimos la contraseña de los datos actualizados si no se envía
+        const { contrasena, ...updatedFields } = req.body;
+
+        // Solo actualizamos la contraseña si se proporciona una nueva
+        if (contrasena && contrasena !== '') {
+            const salt = await bcrypt.genSalt(10);
+            updatedFields.contraseña = await bcrypt.hash(contrasena, salt);
+        }
+
+        // Actualizamos el empleado con los campos permitidos
+        await Empleado.update(updatedFields, { where: { usuario_id: req.params.id } });
+
+        const updatedEmpleado = await Empleado.findByPk(req.params.id);
+        res.json({ status: 'Empleado actualizado', updatedEmpleado });
+
     } catch (error) {
-        console.error('Error al guardar empleado:', error);
+        console.error('Error al actualizar empleado:', error);
         res.status(500).json({ error: 'Error al actualizar empleado' });
     }
 }
