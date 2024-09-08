@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "star":"nodemon BackEnd/index.js",
     "dev": "nodemon BackEnd/index.js"
   },
   "keywords": [],
