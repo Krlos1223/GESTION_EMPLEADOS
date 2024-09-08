@@ -1,24 +1,22 @@
-const dotenv = require('dotenv'); // Importar dotenv
-const express = require('express')
-const morgan = require('morgan');
-const cors = require('cors');
-const app = express(); // la constante app tendr� ahora todo el funcionamiento del servidor
-const sequelize = require('./database'); // Importa la configuración de la base de datos
+const dotenv = require('dotenv'); // Para manejar variables de entorno
+const express = require('express'); // Framework para crear el servidor web
+const morgan = require('morgan'); // Herramienta para registrar las solicitudes HTTP
+const cors = require('cors'); // Permite solicitudes desde otros dominios
+const app = express(); // Crea una instancia de la aplicación Express
+const sequelize = require('./database'); // Importa la configuración para conectar con la base de datos
 
-dotenv.config(); // Cargar variables de entorno
+dotenv.config(); // Carga las variables de entorno desde un archivo .env
 
-//dotenv.config(); // Cargar variables de entorno
+// Configuración del servidor
+app.set('port', process.env.PORT || 3000); // Establece el puerto en el que el servidor escuchará
+app.use(morgan('dev')); // Muestra información sobre las solicitudes en la consola
+app.use(express.json()); // Permite al servidor entender los datos en formato JSON que recibe del cliente
+app.use(cors({ origin: 'http://localhost:4200' })); // Permite que el servidor acepte solicitudes del cliente en el puerto 4200
 
-// Configuraciones
-app.set('port', process.env.PORT || 3000);
-app.use(morgan('dev')); 
-app.use(express.json()); // m�todo que ayuda a convertir el c�digo para que el servidor pueda entender lo que viene del cliente.
-app.use(cors({origin: 'http://localhost:4200'})); // m�todo para comunicar con el cliente
+// Rutas del servidor
+app.use('/api/empleados', require('./routes/empleado.routes')); // Configura las rutas para manejar las solicitudes relacionadas con empleados
 
-// rutas de nuestro servidor
-app.use('/api/empleados',require('./routes/empleado.routes'));
-
-// Iniciando el servidor
-app.listen(app.get('port'), () => {// esta es una mejor manera de configurar el puerto
-    console.log('server activo en el puerto', app.get('port'));
-}); 
+// Inicia el servidor
+app.listen(app.get('port'), () => { // Escucha en el puerto especificado
+    console.log('server activo en el puerto', app.get('port')); // Mensaje en la consola cuando el servidor esté activo
+});

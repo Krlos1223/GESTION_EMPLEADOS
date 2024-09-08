@@ -1,8 +1,9 @@
 .btn {
-    margin-top: 50px;
+    margin-top: 50px;  /* El botón tendrá un margen superior de 50 píxeles, lo que le dará espacio por encima. */
 }
 
 .d-flex {
-    gap: 150px;
-    margin-left: -70px;
+    gap: 150px;  /* Los elementos dentro de la clase "d-flex" tendrán una separación de 150 píxeles entre ellos. */
+    margin-left: -70px;  /* El contenedor con la clase "d-flex" se desplazará hacia la izquierda 70 píxeles. */
 }
+

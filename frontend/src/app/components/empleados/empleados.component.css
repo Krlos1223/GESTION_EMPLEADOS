@@ -1,39 +1,36 @@
-/* empleados.component.css */
 .table-responsive {
-  overflow-x: auto; /* Añade una barra de desplazamiento horizontal si es necesario */
-  
+  overflow-x: auto; /* Si la tabla es demasiado ancha, añade una barra de desplazamiento horizontal */
 }
 
 .card {
-  border-radius: 8px;
-  margin-top: -50px;  
+  border-radius: 8px; /* Redondea los bordes de las tarjetas */
+  margin-top: -50px;  /* Desplaza la tarjeta hacia arriba */
 }
 
 .card-form {
-  margin-left: -90px;
+  margin-left: -90px; /* Mueve el formulario de la tarjeta hacia la izquierda */
 }
 
 .card-list {
-  width: 700px;
+  width: 700px; /* Define un ancho fijo para la tarjeta que contiene la lista */
 }
 
 .card-header {
-  border-bottom: 2px solid #007bff;  
+  border-bottom: 2px solid #007bff; /* Añade una línea azul al final del encabezado de la tarjeta */
 }
 
 .table-hover tbody tr:hover {
-  background-color: #f1f1f1;  
+  background-color: #f1f1f1; /* Cambia el color de fondo de la fila al pasar el mouse por encima */
 }
 
 .table th, .table td {
-  vertical-align: middle;  
+  vertical-align: middle; /* Alinea verticalmente el contenido de las celdas de la tabla en el centro */
 }
 
 .btn {
-  transition: all 0.3s ease;
+  transition: all 0.3s ease; /* Añade una transición suave para cambios en el botón, como al pasar el mouse */
 }
 
 .btn:hover {
-  opacity: 0.8;
+  opacity: 0.8; /* Reduce la opacidad cuando pasas el mouse sobre un botón, creando un efecto de desvanecimiento */
 }
-

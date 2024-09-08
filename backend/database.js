@@ -1,4 +1,3 @@
-// database.js
 // Importa el módulo Sequelize desde 'sequelize' para manejar la base de datos
 const { Sequelize } = require('sequelize');
 

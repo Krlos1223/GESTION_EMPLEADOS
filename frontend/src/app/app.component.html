@@ -1,9 +1,16 @@
+<!-- Muestra el componente app-header solo si isPublicPage() devuelve true -->
 <app-header *ngIf="isPublicPage()"></app-header>
+
+<!-- Muestra el componente app-header-auth solo si isPublicPage() devuelve false -->
 <app-header-auth *ngIf="!isPublicPage()"></app-header-auth>
+
+<!-- Contenedor principal para el contenido de la página -->
 <div class="container">  
   <div class="main-content">    
+    <!-- Router outlet para cargar componentes según la ruta activa -->
     <router-outlet></router-outlet>
   </div>
 </div>
-<app-footer></app-footer>
 
+<!-- Muestra el componente app-footer en todas las páginas -->
+<app-footer></app-footer>

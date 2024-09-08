@@ -1,11 +1,11 @@
 <header>
-    <div class="logo">
-      <img src="assets/logo_taller.jpg" alt="Logo del Taller">
-      <h1>Gestión Taller</h1>
-    </div>
-    <div class="logout">
-      <span>Usuario: {{ username }}</span>
-      <button class="btn btn-danger" (click)="onLogout()">Salir</button>
-    </div>
-  </header>
+  <div class="logo">
+    <img src="assets/logo_taller.jpg" alt="Logo del Taller"> <!-- Muestra el logo del taller, cargado desde la carpeta de assets. -->
+    <h1>Gestión Taller</h1> <!-- Título de la aplicación o sección. -->
+  </div>
+  <div class="logout">
+    <span>Usuario: {{ username }}</span> <!-- Muestra el nombre de usuario, que se recupera del componente Angular. -->
+    <button class="btn btn-danger" (click)="onLogout()">Salir</button> <!-- Botón para cerrar sesión, que llama al método onLogout() cuando se hace clic. -->
+  </div>
+</header>
   

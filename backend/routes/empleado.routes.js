@@ -1,26 +1,19 @@
-/**
- * Vamos a crear rutas del servidor
- * creamos un m�dulo por eso utilizamos express
- * vamos a utilizar como nuestra rest api para 
- * enviar y recibir datos en formato json
- */
-const express = require('express');
-const router = express.Router();
-const empleadoCtrl = require('../controllers/empleado.controller');
-const authenticateToken = require('../middleware/auth.middleware');
+const express = require('express'); // Importa el módulo express para crear el enrutador
+const router = express.Router(); // Crea un nuevo enrutador de express
+const empleadoCtrl = require('../controllers/empleado.controller'); // Importa el controlador para manejar las solicitudes relacionadas con empleados
+const authenticateToken = require('../middleware/auth.middleware'); // Importa el middleware para autenticar tokens
 
-//Ruta login
-router.post('/login', empleadoCtrl.loginEmpleados);
+// Ruta para el inicio de sesión
+router.post('/login', empleadoCtrl.loginEmpleados); // Maneja las solicitudes POST para iniciar sesión
 
-//Ritas de empleados
-router.get('/', empleadoCtrl.getEmpleados); // Aqui tenemos una ruta más limpia de entender gracias al controlador. obtiene todos los empleados
-router.post('/', empleadoCtrl.createEmpleados);//guardar
-router.get('/:id', empleadoCtrl.getUnicoEmpleado);// obtiene unn unico empleado
-router.put('/:id',empleadoCtrl.editarEmpleado);   //Acctualizar datos (uno a la vez)
-router.delete('/:id', empleadoCtrl.eliminarEmpleado);
+// Rutas para gestionar empleados
+router.get('/', empleadoCtrl.getEmpleados); // Obtiene todos los empleados
+router.post('/', empleadoCtrl.createEmpleados); // Guarda un nuevo empleado
+router.get('/:id', empleadoCtrl.getUnicoEmpleado); // Obtiene un empleado específico por ID
+router.put('/:id', empleadoCtrl.editarEmpleado); // Actualiza los datos de un empleado específico
+router.delete('/:id', empleadoCtrl.eliminarEmpleado); // Elimina un empleado específico
 
-//Rutas protegidas
-router.get('/admin', authenticateToken, empleadoCtrl.getEmpleados)
-router.get('/empleados', authenticateToken, empleadoCtrl.getEmpleados)
+// Ruta protegida que requiere autenticación
+router.get('/admin', authenticateToken, empleadoCtrl.getEmpleados); // Obtiene todos los empleados, pero solo si el token de autenticación es válido
 
-module.exports = router;
+module.exports = router; // Exporta el enrutador para que pueda ser usado en otras partes de la aplicación

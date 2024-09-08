@@ -1,37 +1,39 @@
-<div class="container mt-5">
-    <div class="row justify-content-center">
-      <div class="col-md-6 text-center">
-        <h2>Contáctanos</h2>
-        <p>Puedes encontrarnos en las siguientes plataformas:</p>
-        <div class="d-flex justify-content-around mt-4">
-          
-          <!-- WhatsApp -->
-          <a href="https://wa.me/1234567890" target="_blank" class="text-decoration-none">
-            <i class="bi bi-whatsapp icono" style="font-size: 5rem; color: #25D366;"></i>
-            <p class="texto-icono">WhatsApp</p>
-          </a>
-          
-          <!-- Página Web -->
-          <a href="https://www.tupaginaweb.com" target="_blank" class="text-decoration-none">
-            <i class="bi bi-globe icono" style="font-size: 5rem; color: #0d6efd;"></i>
-            <p class="texto-icono">Página Web</p>
-          </a>
-          
-          <!-- Facebook -->
-          <a href="https://www.facebook.com/tuperfil" target="_blank" class="text-decoration-none">
-            <i class="bi bi-facebook icono" style="font-size: 5rem; color: #3b5998;"></i>
-            <p class="texto-icono">Facebook</p>
-          </a>
-          
-          <!-- Instagram -->
-          <a href="https://www.instagram.com/tuperfil" target="_blank" class="text-decoration-none">
-            <i class="bi bi-instagram icono" style="font-size: 5rem; color: #C13584;"></i>
-            <p class="texto-icono">Instagram</p>
-          </a>
-          
-        </div>
-        <button type="button" class="btn btn-primary" (click)="goToHome()">Regresar</button>
+<div class="container mt-5">  <!-- Creamos un contenedor con un margen superior de 5 (mt-5) para dar espacio en la parte de arriba. -->
+  <div class="row justify-content-center">  <!-- Creamos una fila y centramos su contenido horizontalmente. -->
+    <div class="col-md-6 text-center">  <!-- Dentro de la fila, ocupamos la mitad del ancho (6 de 12 columnas) y centramos el texto. -->
+      
+      <h2>Contáctanos</h2>  <!-- Un título grande que dice "Contáctanos". -->
+      <p>Puedes encontrarnos en las siguientes plataformas:</p>  <!-- Un párrafo que indica dónde puedes contactar. -->
+      
+      <div class="d-flex justify-content-around mt-4">  <!-- Creamos una fila flexible (flex) y distribuimos el contenido con espacio entre los íconos, añadiendo un margen superior (mt-4). -->
+        
+        <!-- WhatsApp -->
+        <a href="https://wa.me/1234567890" target="_blank" class="text-decoration-none">  <!-- Enlace a WhatsApp que se abrirá en una nueva pestaña (target="_blank"). -->
+          <i class="bi bi-whatsapp icono" style="font-size: 5rem; color: #25D366;"></i>  <!-- Ícono de WhatsApp grande y de color verde. -->
+          <p class="texto-icono">WhatsApp</p>  <!-- Texto debajo del ícono que dice "WhatsApp". -->
+        </a>
+        
+        <!-- Página Web -->
+        <a href="https://www.tupaginaweb.com" target="_blank" class="text-decoration-none">  <!-- Enlace a la página web. -->
+          <i class="bi bi-globe icono" style="font-size: 5rem; color: #0d6efd;"></i>  <!-- Ícono del globo terráqueo, de color azul. -->
+          <p class="texto-icono">Página Web</p>  <!-- Texto debajo que dice "Página Web". -->
+        </a>
+        
+        <!-- Facebook -->
+        <a href="https://www.facebook.com/tuperfil" target="_blank" class="text-decoration-none">  <!-- Enlace al perfil de Facebook. -->
+          <i class="bi bi-facebook icono" style="font-size: 5rem; color: #3b5998;"></i>  <!-- Ícono de Facebook, de color azul oscuro. -->
+          <p class="texto-icono">Facebook</p>  <!-- Texto debajo que dice "Facebook". -->
+        </a>
+        
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/tuperfil" target="_blank" class="text-decoration-none">  <!-- Enlace al perfil de Instagram. -->
+          <i class="bi bi-instagram icono" style="font-size: 5rem; color: #C13584;"></i>  <!-- Ícono de Instagram, de color rosado. -->
+          <p class="texto-icono">Instagram</p>  <!-- Texto debajo que dice "Instagram". -->
+        </a>
+        
       </div>
+      
+      <button type="button" class="btn btn-primary" (click)="goToHome()">Regresar</button>  <!-- Un botón azul que, al hacer clic, regresa a la página de inicio. -->
     </div>
   </div>
-  
+</div>

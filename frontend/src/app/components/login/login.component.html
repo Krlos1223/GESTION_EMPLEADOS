@@ -1,21 +1,22 @@
 <!-- login.component.html -->
-<form (ngSubmit)="onLogin()">
-  <div class="mb-3">
-    <label for="nombre_de_usuario" class="form-label">Nombre de Usuario</label>
-    <input type="text" id="nombre_de_usuario" class="form-control" name="nombre_de_usuario" [(ngModel)]="username" placeholder="Ingrese el nombre de usuario" required>
+<form (ngSubmit)="onLogin()"> <!-- Define un formulario que llama al método onLogin() cuando se envía. -->
+  <div class="mb-3"> <!-- Contenedor para el campo del nombre de usuario. -->
+    <label for="nombre_de_usuario" class="form-label">Nombre de Usuario</label> <!-- Etiqueta para el campo de nombre de usuario. -->
+    <input type="text" id="nombre_de_usuario" class="form-control" name="nombre_de_usuario" [(ngModel)]="username" placeholder="Ingrese el nombre de usuario" required> <!-- Campo de entrada para el nombre de usuario, vinculado al modelo de datos username. -->
   </div>
-  <div class="mb-3">
-    <label for="contraseña" class="form-label">Contraseña</label>
-    <input type="password" id="contraseña" class="form-control" name="contraseña" [(ngModel)]="password" placeholder="Ingrese la contraseña" required>
+  <div class="mb-3"> <!-- Contenedor para el campo de la contraseña. -->
+    <label for="contraseña" class="form-label">Contraseña</label> <!-- Etiqueta para el campo de contraseña. -->
+    <input type="password" id="contraseña" class="form-control" name="contraseña" [(ngModel)]="password" placeholder="Ingrese la contraseña" required> <!-- Campo de entrada para la contraseña, vinculado al modelo de datos password. -->
   </div>
-  <div class="d-flex justify-content-between">
-   <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
-   <button type="button" class="btn btn-primary" (click)="goToHome()">Regresar</button>
+  <div class="d-flex justify-content-between"> <!-- Contenedor para los botones, alineados horizontalmente. -->
+   <button type="submit" class="btn btn-primary">Iniciar Sesión</button> <!-- Botón para enviar el formulario y llamar al método onLogin(). -->
+   <button type="button" class="btn btn-primary" (click)="goToHome()">Regresar</button> <!-- Botón para regresar a la página principal, llamando al método goToHome(). -->
   </div>
-  <div *ngIf="errorMessage" class="alert alert-danger mt-3">
-    {{ errorMessage }}
+  <div *ngIf="errorMessage" class="alert alert-danger mt-3"> <!-- Muestra un mensaje de error si errorMessage tiene un valor. -->
+    {{ errorMessage }} <!-- Muestra el mensaje de error almacenado en errorMessage. -->
   </div>
 </form>
+
 
 
 

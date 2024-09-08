@@ -1,5 +1,5 @@
-const { DataTypes } = require('sequelize');
-const bcrypt = require('bcrypt');
+const { DataTypes } = require('sequelize'); // Importa DataTypes para definir el tipo de datos de las columnas en el modelo de Sequelize
+const bcrypt = require('bcrypt'); // Importa bcrypt para encriptar y verificar contraseñas de manera segura
 const sequelize = require('../database'); // Importa la instancia de Sequelize
 
 // Define el modelo de empleado para la tabla 'usuarios'
@@ -48,7 +48,7 @@ const Empleado = sequelize.define('Empleado', {
     }
 }, {
     // Nombre de la tabla en la base de datos
-    tableName: 'usuarios', // Asegúrate de usar el nombre correcto de la tabla
+    tableName: 'usuarios',
     // Desactiva los campos de fecha de creación y actualización automáticos
     timestamps: false
 });
