@@ -17,8 +17,8 @@ describe('Pruebas para loginEmpleados', () => {
         // Crear mocks de request y response
         req = {
             body: {
-                nombre_de_usuario: 'mcl',
-                contraseña: '12345'
+                nombre_de_usuario: 'us-cpi',
+                contraseña: '0123456789'
             }
         };
         res = {
@@ -41,7 +41,7 @@ describe('Pruebas para loginEmpleados', () => {
 
     it('Debe responder con 400 si la contraseña es incorrecta', async () => {
         // Mock para encontrar al empleado
-        Empleado.findOne.mockResolvedValue({ nombre_de_usuario: 'mcl', contraseña: '12345' });
+        Empleado.findOne.mockResolvedValue({ nombre_de_usuario: 'us-cpi', contraseña: '0123456789' });
         
         // Mock para que `bcrypt.compare` retorne false
         bcrypt.compare.mockResolvedValue(false);
@@ -56,7 +56,7 @@ describe('Pruebas para loginEmpleados', () => {
 
     it('Debe responder con 200 y retornar el token si el login es exitoso', async () => {
         // Mock para encontrar al empleado
-        Empleado.findOne.mockResolvedValue({ id: 49, nombre_de_usuario: 'mcl', contraseña: '12345', nombre: 'Empleado Prueba' });
+        Empleado.findOne.mockResolvedValue({ id: 39, nombre_de_usuario: 'us-cpi', contraseña: '0123456789', nombre: 'Empleado Prueba' });
         
         // Mock para que `bcrypt.compare` retorne true
         bcrypt.compare.mockResolvedValue(true);
