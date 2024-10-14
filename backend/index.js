@@ -17,6 +17,10 @@ app.use(cors({ origin: 'http://localhost:4200' })); // Permite que el servidor a
 app.use('/api/empleados', require('./routes/empleado.routes')); // Configura las rutas para manejar las solicitudes relacionadas con empleados
 
 // Inicia el servidor
-app.listen(app.get('port'), () => { // Escucha en el puerto especificado
-    console.log('server activo en el puerto', app.get('port')); // Mensaje en la consola cuando el servidor esté activo
-});
+if (require.main === module) {
+    app.listen(app.get('port'), () => { // Escucha en el puerto especificado
+        console.log('server activo en el puerto', app.get('port')); // Mensaje en la consola cuando el servidor esté activo
+    });
+}
+
+module.exports = app; // Exporta la app para que pueda ser utilizada en las pruebas

@@ -1,10 +1,14 @@
 // Importa el módulo Sequelize desde 'sequelize' para manejar la base de datos
+const { Charsets } = require('mysql2');
 const { Sequelize } = require('sequelize');
 
 // Configura la conexión a la base de datos MySQL
 const sequelize = new Sequelize('db_sfi_tap', 'capiedrahita1', 'C@ps*7414', {
     host: 'localhost',          // Dirección del servidor de la base de datos
-    dialect: 'mysql'            // Dialecto de base de datos que estamos utilizando
+    dialect: 'mysql',            // Dialecto de base de datos que estamos utilizando
+    dialectOptions:{
+        charset: 'utf8mb4',
+    }
 });
 
 // Intenta conectar a la base de datos
